@@ -20,6 +20,16 @@ Software requirements
 Major features
 ==============
 
+- [ ] Z PDF z [MVČR](http://www.mvcr.cz/clanek/zkousky-odborne-zpusobilosti.aspx) a [testovacích otázek](http://www.mvcr.cz/soubor/testove-otazky-uchazeci-o-zbrojni-prukaz-sk-a-e-platne-od-1-7-2014-pdf.aspx) je vyexportován text.
+- [ ] Vyexportovaný text je použit pro vytvoření databáze otázek.
+- [ ] V těchto testovacích otázkách je vždy právě jedna správná odpověď k dané otázce.
+- [ ] Uživatel může procházet dostupné otázky i s označenými odpověďmi.
+- [ ] Uživatel si může nechat vygenerovat test se 30 náhodnými otázkami a ten vyřešit.
+- [ ] Každá testovací otázka spadá pod určitý předpis v zákoně.
+- [ ] Pro vygenerování testu je možné zvolit z jakého předpisu chce být uživatel zkoušený.
+- [ ] Uživatel si zvolí, zda chce mít stanovený časový limit, který je obvykle 40 minut.
+- [ ] Uživatel si po vyřešení testu může zobrazit ohodnocení odpovědí. Teoretická část zkoušky se provádí písemným testem trvajícím nejdéle 40 minut, který je složen z 30 otázek, z nichž je 22 otázek ze znalosti právních předpisů hodnocených 3 body, 5 otázek ze znalosti nauky o zbraních a střelivu hodnocených 2 body a 3 otázky ze znalosti zdravotnického minima hodnocených 1 bodem.
+
 Changes in this release
 =======================
 
