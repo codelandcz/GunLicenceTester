@@ -26,8 +26,9 @@ public class Answer
     return correct;
   }
 
-  public void setCorrect(boolean correct)
+  public Answer setCorrect(boolean correct)
   {
     this.correct = correct;
+    return this;
   }
 }
