@@ -21,7 +21,8 @@ Major features
 ==============
 
 - [ ] Z PDF z [MVČR](http://www.mvcr.cz/clanek/zkousky-odborne-zpusobilosti.aspx) a [testovacích otázek](http://www.mvcr.cz/soubor/testove-otazky-uchazeci-o-zbrojni-prukaz-sk-a-e-platne-od-1-7-2014-pdf.aspx) je vyexportován text.
-- [ ] Vyexportovaný text je použit pro vytvoření databáze otázek.
+- [ ] Vyexportovaný text je použit pro vytvoření seznamu otázek.
+- [ ] Ze seznamu otázek je vytvořena databáze
 - [ ] V těchto testovacích otázkách je vždy právě jedna správná odpověď k dané otázce.
 - [ ] Uživatel může procházet dostupné otázky i s označenými odpověďmi.
 - [ ] Uživatel si může nechat vygenerovat test se 30 náhodnými otázkami a ten vyřešit.
