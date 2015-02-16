@@ -1,4 +1,7 @@
 GunLicenceTester
+================
+
+[![Build Status](https://travis-ci.org/codelandcz/GunLicenceTester.svg)](https://travis-ci.org/codelandcz/GunLicenceTester)
 
 Introduction
 ============
