@@ -1,8 +1,7 @@
 package cz.codeland.gunlicencetester;
 
+import org.junit.Assert;
 import org.junit.Test;
-
-import static junit.framework.Assert.assertEquals;
 
 public class ExamTest
 {
@@ -31,6 +30,6 @@ public class ExamTest
         " a) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí bez souhlasu vlastníka nebo nájemce uvedených prostor nebo nemovitostí, zbraň nenabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru a uloženou v uzavřeném obalu za účelem jejího přemístění z místa na místo," + EOL +
         " b) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí se souhlasem vlastníka nebo nájemce uvedených prostor nebo nemovitostí, nebo zbraň nenabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru a uloženou v uzavřeném obalu za účelem jejího přemístění z místa na místo," + EOL +
         " c) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí se souhlasem vlastníka nebo nájemce uvedených prostor nebo nemovitostí, zbraň nabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru." + EOL;
-    assertEquals(examText, expected);
+    Assert.assertEquals(expected, examText);
   }
 }

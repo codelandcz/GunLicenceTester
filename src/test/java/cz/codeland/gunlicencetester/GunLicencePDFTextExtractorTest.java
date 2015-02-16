@@ -26,7 +26,7 @@ public class GunLicencePDFTextExtractorTest
   public void extract_ExtractTextFromTestPDF_ReturnString() throws Exception
   {
     // Given
-    PDFTextExtractor extractor = new GunLicencePDFTextExtractor();
+    PDFTextExtractor extractor = new DefaultPDFTextExtractor();
     // When
     String result = extractor.extract(pdfFile);
     // Then
@@ -37,7 +37,7 @@ public class GunLicencePDFTextExtractorTest
   public void createPdfInMemory_NullFileGiven_NullPointerException() throws Exception
   {
     // Given
-    GunLicencePDFTextExtractor extractor = new GunLicencePDFTextExtractor();
+    DefaultPDFTextExtractor extractor = new DefaultPDFTextExtractor();
     // When
     extractor.extract(null);
   }
@@ -46,7 +46,7 @@ public class GunLicencePDFTextExtractorTest
   public void createPdfInMemory_WrongFileGiven_IOException() throws Exception
   {
     // Given
-    GunLicencePDFTextExtractor extractor = new GunLicencePDFTextExtractor();
+    DefaultPDFTextExtractor extractor = new DefaultPDFTextExtractor();
     // When
     extractor.extract(new FileInputStream(new File("unexistingFileName.pdf")));
   }
@@ -56,7 +56,7 @@ public class GunLicencePDFTextExtractorTest
   {
     // Given
     final String absName = "/testfile.pdf";
-    GunLicencePDFTextExtractor extractor = new GunLicencePDFTextExtractor();
+    DefaultPDFTextExtractor extractor = new DefaultPDFTextExtractor();
     // When
     InputStream resourcePdf = extractor.readResourceFile(absName);
     String result = extractor.extract(resourcePdf);

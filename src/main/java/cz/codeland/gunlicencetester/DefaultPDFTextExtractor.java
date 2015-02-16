@@ -11,9 +11,9 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GunLicencePDFTextExtractor implements PDFTextExtractor
+public class DefaultPDFTextExtractor implements PDFTextExtractor
 {
-  private static final Logger LOGGER = Logger.getLogger(GunLicencePDFTextExtractor.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(DefaultPDFTextExtractor.class.getName());
 
   @Override
   public String extract(InputStream inputStreamPdf) throws IOException
