@@ -10,14 +10,27 @@ public class DefaultTextParser implements TextParser
   {
     List<Question> questions = new ArrayList<>();
 
+    String[] texts = text.split("\\d+\\. ");
+
+    for (String questionWithAnswer : texts) {
+      if (questionWithAnswer.equals("")) {
+        continue;
+      }
+      Question question = createQuestion(questionWithAnswer);
+      questions.add(question);
+    }
+
+    return questions;
+  }
+
+  private Question createQuestion(String text)
+  {
     String[] questionAndAnswers = text.split("[a-c]\\) ");
     Question question = new Question(clean(questionAndAnswers[0]));
     question.addAnswer(new Answer(clean(questionAndAnswers[1])));
     question.addAnswer(new Answer(clean(questionAndAnswers[2])));
     question.addAnswer(new Answer(clean(questionAndAnswers[3])));
-    questions.add(question);
-
-    return questions;
+    return question;
   }
 
   private String clean(String text)
