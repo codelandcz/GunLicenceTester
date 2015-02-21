@@ -1,7 +1,9 @@
 package cz.codeland.gunlicencetester;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,18 +37,44 @@ public class Database
     connection.close();
   }
 
-  public void generateDatabase() throws IOException, SQLException
+  public void generateDatabase(InputStream inputStreamQuestions, InputStream inputStreamAnswers) throws IOException, SQLException
   {
-    final String absResourcePath = "/questions.pdf";
     DefaultPDFTextExtractor extractor = new DefaultPDFTextExtractor();
-    InputStream resourcePdf = extractor.readResourceFile(absResourcePath);
-    String extractedText = extractor.extract(resourcePdf, 2);
-    resourcePdf.close();
+    String extractedText = extractor.extract(inputStreamQuestions, 2);
 
     DefaultTextParser parser = new DefaultTextParser();
-    final List<Question> questions = parser.parseText(extractedText);
+    List<Question> questions = parser.parseText(extractedText);
+    questions = markCorrectAnswers(questions, inputStreamAnswers);
+
     createTables();
     persistQuestionsWithAnswers(questions);
+  }
+
+  private List<Question> markCorrectAnswers(List<Question> questions, InputStream inputStreamAnswers)
+  {
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStreamAnswers))) {
+      int[] answers = new int[questions.size()];
+
+      int i = 0;
+      String line;
+      while ((i < questions.size()) && ((line = reader.readLine()) != null)) {
+        int parsedAnswer = Integer.parseInt(line);
+        if (0 < parsedAnswer && parsedAnswer < 4) {
+          answers[i] = parsedAnswer - 1;
+          i++;
+        }
+      }
+
+      for (i = 0; i < questions.size(); i++) {
+        Question question = questions.get(i);
+        question.getAnswers().get(answers[i]).setCorrect(true);
+      }
+
+    } catch (IOException e) {
+      LOGGER.log(Level.SEVERE, "IO problem with reading answers.", e);
+    }
+
+    return questions;
   }
 
   private void createTables() throws SQLException
