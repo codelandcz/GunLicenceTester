@@ -28,4 +28,16 @@ public class Question
   {
     return text;
   }
+
+  @Override
+  public String toString()
+  {
+    StringBuffer stringBuffer = new StringBuffer();
+
+    for (Answer answer : getAnswers()) {
+      stringBuffer.append(answer + ", ");
+    }
+
+    return "{ Question, text: " + getText() + ", Answers: [" + stringBuffer + "] }";
+  }
 }

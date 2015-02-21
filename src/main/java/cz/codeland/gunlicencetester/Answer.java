@@ -31,4 +31,10 @@ public class Answer
     this.correct = correct;
     return this;
   }
+
+  @Override
+  public String toString()
+  {
+    return "{ Answer, text: " + this.getText() + ", correct: " + this.isCorrect() + "}";
+  }
 }
