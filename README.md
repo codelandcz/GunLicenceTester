@@ -2,6 +2,7 @@ GunLicenceTester
 ================
 
 [![Build Status](https://travis-ci.org/codelandcz/GunLicenceTester.svg)](https://travis-ci.org/codelandcz/GunLicenceTester)
+[![codecov.io](https://codecov.io/github/codelandcz/GunLicenceTester/coverage.svg?branch=master)](https://codecov.io/github/codelandcz/GunLicenceTester?branch=master)
 
 Introduction
 ============
