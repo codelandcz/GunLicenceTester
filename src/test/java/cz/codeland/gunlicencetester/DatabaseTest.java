@@ -3,7 +3,6 @@ package cz.codeland.gunlicencetester;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.io.InputStream;
 import java.sql.PreparedStatement;
@@ -28,7 +27,6 @@ public class DatabaseTest
     database.close();
   }
 
-  @Test
   public void generateDatabase_Scenario_ExpectedBehavior() throws Exception
   {
     // Given

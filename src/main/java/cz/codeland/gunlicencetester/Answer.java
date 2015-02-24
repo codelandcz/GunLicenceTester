@@ -1,9 +1,19 @@
 package cz.codeland.gunlicencetester;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "answer")
 public class Answer
 {
-  private boolean correct;
-  private String  text;
+  @Id
+  @GeneratedValue
+  private Long     id;
+  private boolean  correct;
+  private String   text;
+  @ManyToOne
+  @JoinColumn(name = "question_id")
+  private Question question;
 
   public Answer(String text)
   {
@@ -16,9 +26,35 @@ public class Answer
     this.text = text;
   }
 
+  public Question getQuestion()
+  {
+    return question;
+  }
+
+  public Answer setQuestion(Question question)
+  {
+    this.question = question;
+    return this;
+  }
+
+  public Long getId()
+  {
+    return id;
+  }
+
+  private void setId(Long id)
+  {
+    this.id = id;
+  }
+
   public String getText()
   {
     return text;
+  }
+
+  public void setText(String text)
+  {
+    this.text = text;
   }
 
   public boolean isCorrect()
