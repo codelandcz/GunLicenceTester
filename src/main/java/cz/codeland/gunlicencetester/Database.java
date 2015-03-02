@@ -64,6 +64,7 @@ public class Database
   private void persistQuestions(List<Question> questions) throws SQLException, RuntimeException
   {
     for(Question question : questions) {
+      System.out.println("SAVING " + question);
       session.save(question);
     }
   }
