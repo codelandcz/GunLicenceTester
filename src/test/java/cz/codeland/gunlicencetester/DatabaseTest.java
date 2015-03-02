@@ -14,10 +14,11 @@ import org.junit.Test;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class DatabaseTest
 {
-
+  private static final Logger LOGGER = Logger.getLogger(DatabaseTest.class.getName());
   private Database       database;
   private SessionFactory sessionFactory;
   private Session        session;
@@ -89,19 +90,13 @@ public class DatabaseTest
 
     transaction.rollback();
 
-    for(Question expectedQuestion : expectedQuestions) {
-      System.out.println(expectedQuestion);
-    }
-    for(Object actualQuestion : actualQuestions) {
-      System.out.println((Question) actualQuestion);
-    }
-
     // Then
     Assert.assertEquals(expectedQuestions.size(), actualQuestions.size());
 
     for(int i = 0; i < actualQuestions.size(); i++) {
       Question expectedQuestion = expectedQuestions.get(i);
       Question actualQuestion = (Question) actualQuestions.get(i);
+      LOGGER.info("Comparing: " + expectedQuestion + " with " + actualQuestion);
 
       Assert.assertEquals(expectedQuestion, actualQuestion);
     }

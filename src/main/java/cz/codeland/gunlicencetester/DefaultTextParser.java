@@ -2,9 +2,11 @@ package cz.codeland.gunlicencetester;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class DefaultTextParser implements TextParser
 {
+  private static final Logger LOGGER = Logger.getLogger(DefaultTextParser.class.getName());
   private static String EOL     = "\\r\\n";
   private static String EOLtext = "\r\n";
 
@@ -18,6 +20,7 @@ public class DefaultTextParser implements TextParser
     for (String textQuestion : textQuestions) {
       Question question = createQuestion(textQuestion);
       questions.add(question);
+      LOGGER.info("Question parsed: "+ question);
     }
 
     return questions;

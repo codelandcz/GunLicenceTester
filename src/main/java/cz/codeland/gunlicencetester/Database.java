@@ -52,6 +52,7 @@ public class Database
       for(i = 0; i < questions.size(); i++) {
         Question question = questions.get(i);
         question.getAnswers().get(answers[i]).setCorrect(true);
+        LOGGER.info("Question: " + question.getText() + ", answer marked as correct: " + question.getAnswers().get(i));
       }
 
     } catch(IOException e) {
@@ -64,7 +65,7 @@ public class Database
   private void persistQuestions(List<Question> questions) throws SQLException, RuntimeException
   {
     for(Question question : questions) {
-      System.out.println("SAVING " + question);
+      LOGGER.info("Persisting question: " + question);
       session.save(question);
     }
   }
