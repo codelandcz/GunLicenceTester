@@ -89,6 +89,13 @@ public class DatabaseTest
 
     transaction.rollback();
 
+    for(Question expectedQuestion : expectedQuestions) {
+      System.out.println(expectedQuestion);
+    }
+    for(Object actualQuestion : actualQuestions) {
+      System.out.println((Question) actualQuestion);
+    }
+
     // Then
     Assert.assertEquals(expectedQuestions.size(), actualQuestions.size());
 
@@ -96,7 +103,7 @@ public class DatabaseTest
       Question expectedQuestion = expectedQuestions.get(i);
       Question actualQuestion = (Question) actualQuestions.get(i);
 
-      Assert.assertTrue(expectedQuestion.equals(actualQuestion));
+      Assert.assertEquals(expectedQuestion, actualQuestion);
     }
   }
 }
