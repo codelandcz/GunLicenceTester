@@ -27,9 +27,9 @@ public class DefaultTextParser implements TextParser
   {
     String[] questionAndAnswers = text.split("[a-c]\\) ");
     Question question = new Question(clean(questionAndAnswers[0]));
-    question.addAnswer(new Answer(clean(questionAndAnswers[1])));
-    question.addAnswer(new Answer(clean(questionAndAnswers[2])));
-    question.addAnswer(new Answer(clean(questionAndAnswers[3])));
+    question.addAnswer(new Answer(clean(questionAndAnswers[1])).setQuestion(question));
+    question.addAnswer(new Answer(clean(questionAndAnswers[2])).setQuestion(question));
+    question.addAnswer(new Answer(clean(questionAndAnswers[3])).setQuestion(question));
     return question;
   }
 

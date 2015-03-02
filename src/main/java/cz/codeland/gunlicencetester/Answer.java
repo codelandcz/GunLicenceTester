@@ -15,6 +15,10 @@ public class Answer
   @JoinColumn(name = "question_id")
   private Question question;
 
+  public Answer()
+  {
+  }
+
   public Answer(String text)
   {
     this(text, false);
@@ -72,5 +76,23 @@ public class Answer
   public String toString()
   {
     return "{ Answer, text: " + this.getText() + ", correct: " + this.isCorrect() + "}";
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    if(this == obj) {
+      return true;
+    }
+
+    if(obj instanceof Answer) {
+      Answer that = (Answer) obj;
+      boolean sameText = this.getText().equals(that.getText());
+      boolean sameCorrect = this.isCorrect() == that.isCorrect();
+
+      return sameText && sameCorrect;
+    }
+
+    return false;
   }
 }

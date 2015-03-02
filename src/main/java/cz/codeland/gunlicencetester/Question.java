@@ -12,8 +12,12 @@ public class Question
   @GeneratedValue
   private Long   id;
   private String text;
-  @OneToMany(mappedBy = "question", cascade = {CascadeType.ALL}, orphanRemoval = true)
+  @OneToMany(mappedBy = "question", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.EAGER)
   private List<Answer> answers = new ArrayList<>();
+
+  public Question()
+  {
+  }
 
   public Question(String text)
   {
@@ -64,12 +68,41 @@ public class Question
   @Override
   public String toString()
   {
-    StringBuffer stringBuffer = new StringBuffer();
+    StringBuilder stringBuffer = new StringBuilder();
 
-    for (Answer answer : this.answers) {
-      stringBuffer.append(answer + ", ");
+    for(Answer answer : this.answers) {
+      stringBuffer.append(answer).append(", ");
     }
 
     return "{ Question, text: " + getText() + ", Answers: [" + stringBuffer + "] }";
+  }
+
+  @Override
+  public boolean equals(Object obj)
+  {
+    if(this == obj) {
+      return true;
+    }
+
+    if(obj instanceof Question) {
+      Question that = (Question) obj;
+
+      boolean sameTexts = this.getText().equals(that.getText());
+      boolean sameSizeAnswers = this.getAnswers().size() == that.getAnswers().size();
+      if(!sameSizeAnswers || !sameTexts) {
+        return false;
+      }
+
+      boolean sameAnswers = true;
+      for(int i = 0; sameAnswers && i < answers.size(); i++) {
+        Answer thisAnswer = answers.get(i);
+        Answer thatAnswer = that.getAnswers().get(i);
+        sameAnswers = thisAnswer.equals(thatAnswer);
+      }
+
+      return sameAnswers;
+    }
+
+    return false;
   }
 }

@@ -1,83 +1,104 @@
 package cz.codeland.gunlicencetester;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.io.InputStream;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
 public class DatabaseTest
 {
 
-  private Database database;
+  private Database       database;
+  private SessionFactory sessionFactory;
 
   @Before
   public void setUp() throws Exception
   {
+    Configuration configuration = new Configuration().configure();
+    ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+      .applySettings(configuration.getProperties())
+      .build();
+    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
     database = new Database();
   }
 
   @After
   public void tearDown() throws Exception
   {
-    database.close();
   }
 
-  public void generateDatabase_Scenario_ExpectedBehavior() throws Exception
+  @Test
+  public void generateDatabase_HibernateORM_CreatedTestDatabase() throws Exception
   {
     // Given
-    final String absResourcePathQuestions = "/questions.pdf";
+    final String absResourcePathQuestions = "/questionsTest.pdf";
     final String absResourcePathAnswers = "/answersTest.csv";
-
-    List<Question> expectedQuestions = new LinkedList<>();
-    Question expectedQuestion = new Question("Q1");
-    expectedQuestion.addAnswer(new Answer("A11"));
-    expectedQuestion.addAnswer(new Answer("A12"));
-    expectedQuestion.addAnswer(new Answer("A13"));
-    expectedQuestions.add(expectedQuestion);
-
-    expectedQuestion = new Question("Q2");
-    expectedQuestion.addAnswer(new Answer("A21"));
-    expectedQuestion.addAnswer(new Answer("A22"));
-    expectedQuestion.addAnswer(new Answer("A23"));
-    expectedQuestions.add(expectedQuestion);
-
-    expectedQuestion = new Question("Q3");
-    expectedQuestion.addAnswer(new Answer("A31"));
-    expectedQuestion.addAnswer(new Answer("A32"));
-    expectedQuestion.addAnswer(new Answer("A33"));
-    expectedQuestions.add(expectedQuestion);
 
     InputStream inputStreamQuestions = this.getClass().getResourceAsStream(absResourcePathQuestions);
     InputStream inputStreamAnswers = this.getClass().getResourceAsStream(absResourcePathAnswers);
 
+    List<Question> expectedQuestions = new LinkedList<>();
+    Question expectedQuestion1 = new Question("Testovací otázka 1");
+    Answer expectedAnswer1A = new Answer("Testovací odpověď a").setCorrect(true).setQuestion(expectedQuestion1);
+    Answer expectedAnswer1B = new Answer("Testovací odpověď b").setQuestion(expectedQuestion1);
+    Answer expectedAnswer1C = new Answer("Testovací odpověď c").setQuestion(expectedQuestion1);
+    expectedQuestion1.addAnswer(expectedAnswer1A);
+    expectedQuestion1.addAnswer(expectedAnswer1B);
+    expectedQuestion1.addAnswer(expectedAnswer1C);
+    Question expectedQuestion2 = new Question("Testovací otázka 2");
+    Answer expectedAnswer2A = new Answer("Testovací odpověď a").setQuestion(expectedQuestion2);
+    Answer expectedAnswer2B = new Answer("Testovací odpověď b").setCorrect(true).setQuestion(expectedQuestion2);
+    Answer expectedAnswer2C = new Answer("Testovací odpověď c").setQuestion(expectedQuestion2);
+    expectedQuestion2.addAnswer(expectedAnswer2A);
+    expectedQuestion2.addAnswer(expectedAnswer2B);
+    expectedQuestion2.addAnswer(expectedAnswer2C);
+    Question expectedQuestion3 = new Question("Testovací otázka 3");
+    Answer expectedAnswer3A = new Answer("Testovací odpověď a").setQuestion(expectedQuestion3);
+    Answer expectedAnswer3B = new Answer("Testovací odpověď b").setQuestion(expectedQuestion3);
+    Answer expectedAnswer3C = new Answer("Testovací odpověď c").setCorrect(true).setQuestion(expectedQuestion3);
+    expectedQuestion3.addAnswer(expectedAnswer3A);
+    expectedQuestion3.addAnswer(expectedAnswer3B);
+    expectedQuestion3.addAnswer(expectedAnswer3C);
+    expectedQuestions.add(expectedQuestion1);
+    expectedQuestions.add(expectedQuestion2);
+    expectedQuestions.add(expectedQuestion3);
+
     // When
     database.generateDatabase(inputStreamQuestions, inputStreamAnswers);
 
-    // Then
-    List<Question> actualQuestions = new LinkedList<>();
-    ResultSet dbResultQuestions = database.getConnection().createStatement().executeQuery("SELECT * FROM question");
-    PreparedStatement statement = database.getConnection().prepareStatement("SELECT * FROM answer WHERE question_id = ? ORDER BY id");
-    while (dbResultQuestions.next()) {
-      Question actualQuestion = new Question(dbResultQuestions.getString("question"));
-
-      statement.setLong(1, dbResultQuestions.getLong("id"));
-      ResultSet dbResultAnswers = statement.executeQuery();
-      while (dbResultAnswers.next()) {
-        Answer actualAnswer = new Answer(dbResultAnswers.getString("answer"));
-        actualAnswer.setCorrect(dbResultAnswers.getBoolean("correct"));
-        actualQuestion.addAnswer(actualAnswer);
-      }
-
-      actualQuestions.add(actualQuestion);
+    Session session = sessionFactory.openSession();
+    Transaction transaction = session.getTransaction();
+    List actualQuestions;
+    try {
+      transaction.begin();
+      actualQuestions = session.createQuery("from Question").list();
+      transaction.commit();
+    } catch(RuntimeException e) {
+      transaction.rollback();
+      throw e;
+    } finally {
+      session.close();
     }
 
-    Assert.assertTrue(actualQuestions.get(0).getAnswers().get(1).isCorrect());
-    Assert.assertTrue(actualQuestions.get(1).getAnswers().get(0).isCorrect());
-    Assert.assertTrue(actualQuestions.get(2).getAnswers().get(2).isCorrect());
+    // Then
+    Assert.assertEquals(expectedQuestions.size(), actualQuestions.size());
+
+    for(int i = 0; i < actualQuestions.size(); i++) {
+      Question expectedQuestion = expectedQuestions.get(i);
+      Question actualQuestion = (Question) actualQuestions.get(i);
+
+      Assert.assertTrue(expectedQuestion.equals(actualQuestion));
+    }
   }
 }
