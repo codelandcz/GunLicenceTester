@@ -1,17 +1,12 @@
 package cz.codeland.gunlicencetester;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,19 +14,14 @@ import java.util.logging.Logger;
 public class Database
 {
   private static final Logger LOGGER = Logger.getLogger(DefaultPDFTextExtractor.class.getName());
-  private final SessionFactory sessionFactory;
+  private final Session session;
 
-  public Database()
+  public Database(Session session)
   {
-    Configuration configuration = new Configuration().configure();
-    ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-      .applySettings(configuration.getProperties())
-      .build();
-
-    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+    this.session = session;
   }
 
-  public void generateDatabase(InputStream inputStreamQuestions, InputStream inputStreamAnswers) throws IOException, SQLException
+  public void generateDatabase(InputStream inputStreamQuestions, InputStream inputStreamAnswers) throws IOException, SQLException, RuntimeException
   {
     DefaultPDFTextExtractor extractor = new DefaultPDFTextExtractor();
     String extractedText = extractor.extract(inputStreamQuestions, 2);
@@ -71,22 +61,10 @@ public class Database
     return questions;
   }
 
-  private void persistQuestions(List<Question> questions) throws SQLException
+  private void persistQuestions(List<Question> questions) throws SQLException, RuntimeException
   {
-    Session session = sessionFactory.openSession();
-    Transaction transaction = session.getTransaction();
-
-    try {
-      transaction.begin();
-      for(Question question : questions) {
-        session.save(question);
-      }
-      transaction.commit();
-    } catch(RuntimeException e) {
-      transaction.rollback();
-      throw e;
-    } finally {
-      session.close();
+    for(Question question : questions) {
+      session.save(question);
     }
   }
 

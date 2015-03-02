@@ -20,6 +20,7 @@ public class DatabaseTest
 
   private Database       database;
   private SessionFactory sessionFactory;
+  private Session        session;
 
   @Before
   public void setUp() throws Exception
@@ -28,14 +29,16 @@ public class DatabaseTest
     ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
       .applySettings(configuration.getProperties())
       .build();
-    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
-    database = new Database();
+    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+    session = sessionFactory.openSession();
+    database = new Database(session);
   }
 
   @After
   public void tearDown() throws Exception
   {
+    session.close();
   }
 
   @Test
@@ -75,21 +78,16 @@ public class DatabaseTest
     expectedQuestions.add(expectedQuestion3);
 
     // When
-    database.generateDatabase(inputStreamQuestions, inputStreamAnswers);
-
-    Session session = sessionFactory.openSession();
     Transaction transaction = session.getTransaction();
+    transaction.begin();
+    database.generateDatabase(inputStreamQuestions, inputStreamAnswers);
+    session.flush();
+    session.clear();
+
     List actualQuestions;
-    try {
-      transaction.begin();
-      actualQuestions = session.createQuery("from Question").list();
-      transaction.commit();
-    } catch(RuntimeException e) {
-      transaction.rollback();
-      throw e;
-    } finally {
-      session.close();
-    }
+    actualQuestions = session.createQuery("from Question").list();
+
+    transaction.rollback();
 
     // Then
     Assert.assertEquals(expectedQuestions.size(), actualQuestions.size());
