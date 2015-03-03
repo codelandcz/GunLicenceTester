@@ -13,7 +13,7 @@ public class AnswerTest
   }
 
   @Test
-  public void compareTo_Scenario_InstancesAreEqual() throws Exception
+  public void equals_Scenario_InstancesAreEqual() throws Exception
   {
     // Given
     Answer expectedAnswer = new Answer("Answer");
@@ -24,7 +24,7 @@ public class AnswerTest
   }
 
   @Test
-  public void compareTo_Scenario_InstancesAreNotEqual() throws Exception
+  public void equals_Scenario_InstancesAreNotEqual() throws Exception
   {
     // Given
     Answer expectedAnswer = new Answer("Answer");
@@ -32,5 +32,27 @@ public class AnswerTest
     // When
     // Then
     Assert.assertNotEquals(expectedAnswer, actualAnswer);
+  }
+
+  @Test
+  public void equals_Scenario_SameInstance() throws Exception
+  {
+    // Given
+    Answer expectedAnswer = new Answer("Answer");
+    Answer actualAnswer = expectedAnswer;
+    // When
+    // Then
+    Assert.assertEquals(expectedAnswer, actualAnswer);
+  }
+
+  @Test
+  public void equals_Scenario_DifferentClasses() throws Exception
+  {
+    // Given
+    Answer expectedAnswer = new Answer("Answer");
+    Object differentClass = new Object();
+    // When
+    // Then
+    Assert.assertNotEquals(expectedAnswer, differentClass);
   }
 }
