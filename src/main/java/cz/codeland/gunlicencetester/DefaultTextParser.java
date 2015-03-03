@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 public class DefaultTextParser implements TextParser
 {
   private static final Logger LOGGER = Logger.getLogger(DefaultTextParser.class.getName());
-  private static String EOL     = "\\r\\n";
-  private static String EOLtext = "\r\n";
+  private static String EOLtext = System.getProperty("line.separator");
+  private static String EOL     = EOLtext.replaceAll("\\\\","\\");
 
   @Override
   public List<Question> parseText(String text)
