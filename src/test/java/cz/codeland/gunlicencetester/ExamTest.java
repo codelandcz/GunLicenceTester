@@ -24,7 +24,7 @@ public class ExamTest
     Exam exam = new Exam();
     exam.addQuestion(question);
     // When
-    String examText = QuestionsPrinter.printQuestion(exam, 1);
+    String examText = QuestionsPrinter.questionToString(1, question, QuestionStyle.TESTING);
     // Then
     String expected =
       "1. Pro účely zákona o zbraních se rozumí držením zbraně nebo střeliva mít" + SystemProperty.EOL +
