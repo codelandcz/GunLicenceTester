@@ -1,26 +1,27 @@
 package cz.codeland.gunlicencetester;
 
+import cz.codeland.gunlicencetester.util.SystemProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class DefaultTextParser implements TextParser
 {
-  private static final Logger LOGGER = Logger.getLogger(DefaultTextParser.class.getName());
-  private static String EOLtext = System.getProperty("line.separator");
-  private static String EOL     = EOLtext.replaceAll("\\\\","\\");
+  private static final Logger LOGGER   = Logger.getLogger(DefaultTextParser.class.getName());
+  private static       String EOLregex = SystemProperty.EOL.replaceAll("\\\\", "\\");
 
   @Override
   public List<Question> parseText(String text)
   {
     text = textCorrections(text);
 
-    String[] textQuestions = text.split(EOL + " " + EOL);
+    String[] textQuestions = text.split(EOLregex + " " + EOLregex);
     List<Question> questions = new ArrayList<>();
-    for (String textQuestion : textQuestions) {
+    for(String textQuestion : textQuestions) {
       Question question = createQuestion(textQuestion);
       questions.add(question);
-      LOGGER.info("Question parsed: "+ question);
+      LOGGER.info("Question parsed: " + question);
     }
 
     return questions;
@@ -53,9 +54,9 @@ public class DefaultTextParser implements TextParser
   {
     String result = extractedText;
 
-    String gapReplacement = " " + EOLtext + " " + EOLtext;
-    String numberPrefixText = EOL;
-    String numberPrefixReplacement = " " + EOLtext + " " + EOLtext;
+    String gapReplacement = " " + SystemProperty.EOL + " " + SystemProperty.EOL;
+    String numberPrefixText = EOLregex;
+    String numberPrefixReplacement = " " + SystemProperty.EOL + " " + SystemProperty.EOL;
 
     result = result
       .replaceAll(numberPrefixText + "46\\. ", numberPrefixReplacement + "46. ")
@@ -63,14 +64,14 @@ public class DefaultTextParser implements TextParser
       .replaceAll(numberPrefixText + "110\\. ", numberPrefixReplacement + "110. ");
 
     result = result
-      .replaceAll(" " + EOL + "  " + EOL, gapReplacement)
-      .replaceAll(" " + EOL + " " + EOL + " " + EOL, gapReplacement)
-      .replaceAll(" " + EOL + " " + EOL + "  " + EOL, gapReplacement)
-      .replaceAll(" " + EOL + "  " + EOL + "  " + EOL, gapReplacement)
-      .replaceAll("  " + EOL + " " + EOL + "  " + EOL, gapReplacement)
-      .replaceAll("   " + EOL + " " + EOL + "  " + EOL, gapReplacement)
-      .replaceAll(" " + EOL + " " + EOL + " " + EOL + "  " + EOL, gapReplacement)
-      .replaceAll(" " + EOL + " " + EOL + " " + EOL + "  " + EOL, gapReplacement);
+      .replaceAll(" " + EOLregex + "  " + EOLregex, gapReplacement)
+      .replaceAll(" " + EOLregex + " " + EOLregex + " " + EOLregex, gapReplacement)
+      .replaceAll(" " + EOLregex + " " + EOLregex + "  " + EOLregex, gapReplacement)
+      .replaceAll(" " + EOLregex + "  " + EOLregex + "  " + EOLregex, gapReplacement)
+      .replaceAll("  " + EOLregex + " " + EOLregex + "  " + EOLregex, gapReplacement)
+      .replaceAll("   " + EOLregex + " " + EOLregex + "  " + EOLregex, gapReplacement)
+      .replaceAll(" " + EOLregex + " " + EOLregex + " " + EOLregex + "  " + EOLregex, gapReplacement)
+      .replaceAll(" " + EOLregex + " " + EOLregex + " " + EOLregex + "  " + EOLregex, gapReplacement);
 
     return result;
   }
