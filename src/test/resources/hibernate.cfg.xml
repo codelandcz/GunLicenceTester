@@ -10,7 +10,7 @@
         <property name="connection.password">testpassword</property>
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="cz.codeland.gunlicencetester.Answer" />
-        <mapping class="cz.codeland.gunlicencetester.Question" />
+        <mapping class="cz.codeland.gunlicensetester.Answer" />
+        <mapping class="cz.codeland.gunlicensetester.Question" />
     </session-factory>
 </hibernate-configuration>

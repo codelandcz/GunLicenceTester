@@ -1,4 +1,4 @@
-package cz.codeland.gunlicencetester;
+package cz.codeland.gunlicensetester;
 
 import javax.persistence.*;
 import java.util.ArrayList;

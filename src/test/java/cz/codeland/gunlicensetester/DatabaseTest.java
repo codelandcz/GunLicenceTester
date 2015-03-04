@@ -1,4 +1,4 @@
-package cz.codeland.gunlicencetester;
+package cz.codeland.gunlicensetester;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

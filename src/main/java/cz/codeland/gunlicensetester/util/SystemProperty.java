@@ -1,4 +1,4 @@
-package cz.codeland.gunlicencetester.util;
+package cz.codeland.gunlicensetester.util;
 
 public class SystemProperty
 {

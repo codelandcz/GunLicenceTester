@@ -1,6 +1,6 @@
-package cz.codeland.gunlicencetester;
+package cz.codeland.gunlicensetester;
 
-import cz.codeland.gunlicencetester.util.SystemProperty;
+import cz.codeland.gunlicensetester.util.SystemProperty;
 
 import java.util.ArrayList;
 import java.util.List;

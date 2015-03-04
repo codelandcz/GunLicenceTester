@@ -1,4 +1,4 @@
-package cz.codeland.gunlicencetester;
+package cz.codeland.gunlicensetester;
 
 import java.util.ArrayList;
 import java.util.List;

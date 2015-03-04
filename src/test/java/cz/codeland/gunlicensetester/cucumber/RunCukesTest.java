@@ -1,4 +1,4 @@
-package cz.codeland.gunlicencetester.cucumber;
+package cz.codeland.gunlicensetester.cucumber;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

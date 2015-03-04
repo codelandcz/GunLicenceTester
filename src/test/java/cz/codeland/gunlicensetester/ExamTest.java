@@ -1,7 +1,7 @@
-package cz.codeland.gunlicencetester;
+package cz.codeland.gunlicensetester;
 
-import cz.codeland.gunlicencetester.util.QuestionsPrinter;
-import cz.codeland.gunlicencetester.util.SystemProperty;
+import cz.codeland.gunlicensetester.util.QuestionsPrinter;
+import cz.codeland.gunlicensetester.util.SystemProperty;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,9 +28,9 @@ public class ExamTest
     // Then
     String expected =
       "1. Pro účely zákona o zbraních se rozumí držením zbraně nebo střeliva mít" + SystemProperty.EOL +
-        " a) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí bez souhlasu vlastníka nebo nájemce uvedených prostor nebo nemovitostí, zbraň nenabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru a uloženou v uzavřeném obalu za účelem jejího přemístění z místa na místo," + SystemProperty.EOL +
-        " b) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí se souhlasem vlastníka nebo nájemce uvedených prostor nebo nemovitostí, nebo zbraň nenabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru a uloženou v uzavřeném obalu za účelem jejího přemístění z místa na místo," + SystemProperty.EOL +
-        " c) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí se souhlasem vlastníka nebo nájemce uvedených prostor nebo nemovitostí, zbraň nabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru." + SystemProperty.EOL;
+        "a) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí bez souhlasu vlastníka nebo nájemce uvedených prostor nebo nemovitostí, zbraň nenabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru a uloženou v uzavřeném obalu za účelem jejího přemístění z místa na místo," + SystemProperty.EOL +
+        "b) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí se souhlasem vlastníka nebo nájemce uvedených prostor nebo nemovitostí, nebo zbraň nenabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru a uloženou v uzavřeném obalu za účelem jejího přemístění z místa na místo," + SystemProperty.EOL +
+        "c) zbraň nebo střelivo uvnitř bytových nebo provozních prostor nebo uvnitř zřetelně ohraničených nemovitostí se souhlasem vlastníka nebo nájemce uvedených prostor nebo nemovitostí, zbraň nabitou náboji v zásobníku, nábojové schránce, nábojové komoře hlavně nebo nábojových komorách válce revolveru." + SystemProperty.EOL;
     Assert.assertEquals(expected, examText);
   }
 }

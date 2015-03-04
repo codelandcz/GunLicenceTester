@@ -1,4 +1,4 @@
-package cz.codeland.gunlicencetester;
+package cz.codeland.gunlicensetester;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.pdfbox.cos.COSDocument;

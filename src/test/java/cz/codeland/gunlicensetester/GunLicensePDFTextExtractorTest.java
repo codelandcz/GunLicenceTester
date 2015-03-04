@@ -1,4 +1,4 @@
-package cz.codeland.gunlicencetester;
+package cz.codeland.gunlicensetester;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class GunLicencePDFTextExtractorTest
+public class GunLicensePDFTextExtractorTest
 {
   private String          text;
   private FileInputStream pdfFile;

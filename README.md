@@ -1,4 +1,4 @@
-GunLicenceTester
+GunLicenseTester
 ================
 
 [![Build Status](https://travis-ci.org/codelandcz/GunLicenceTester.svg)](https://travis-ci.org/codelandcz/GunLicenceTester)
@@ -7,7 +7,7 @@ GunLicenceTester
 Introduction
 ============
 
-GunLicenceTester is a way how to prepare for gun licence exams.
+GunLicenseTester is a way how to prepare for gun License exams.
 
 Supported systems
 =================

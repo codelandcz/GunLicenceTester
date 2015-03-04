@@ -3,14 +3,14 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cz.codeland.gunlicencetester</groupId>
-    <artifactId>GunLicenceTester</artifactId>
+    <groupId>cz.codeland.gunLicensetester</groupId>
+    <artifactId>GunLicenseTester</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>cz.codeland.gunlicencetester.GunLicenceTester</mainClass>
-        <jar.final.name>GunLicenceTester</jar.final.name>
+        <mainClass>cz.codeland.gunlicensetester.GunLicenseTester</mainClass>
+        <jar.final.name>GunLicenseTester</jar.final.name>
         <compiler.source.version>1.8</compiler.source.version>
     </properties>
 

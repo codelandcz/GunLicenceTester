@@ -1,8 +1,8 @@
-package cz.codeland.gunlicencetester.util;
+package cz.codeland.gunlicensetester.util;
 
-import cz.codeland.gunlicencetester.Answer;
-import cz.codeland.gunlicencetester.Question;
-import cz.codeland.gunlicencetester.QuestionStyle;
+import cz.codeland.gunlicensetester.Answer;
+import cz.codeland.gunlicensetester.Question;
+import cz.codeland.gunlicensetester.QuestionStyle;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
