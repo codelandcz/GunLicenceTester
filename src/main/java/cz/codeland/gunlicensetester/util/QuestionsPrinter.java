@@ -8,7 +8,7 @@ import java.util.List;
 
 public class QuestionsPrinter
 {
-  private static String correctAnswerMark = "*";
+  private static final String correctAnswerMark = "*";
 
   public static String questionsToString(List<Question> questions, QuestionStyle questionStyle)
   {

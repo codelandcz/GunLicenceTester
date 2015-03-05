@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Database
+class Database
 {
   private static final Logger LOGGER = Logger.getLogger(DefaultPDFTextExtractor.class.getName());
   private final Session session;
@@ -62,7 +62,7 @@ public class Database
     return questions;
   }
 
-  private void persistQuestions(List<Question> questions) throws SQLException, RuntimeException
+  private void persistQuestions(List<Question> questions)
   {
     for(Question question : questions) {
       LOGGER.info("Persisting question: " + question);

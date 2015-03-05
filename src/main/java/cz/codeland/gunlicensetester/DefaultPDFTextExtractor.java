@@ -36,7 +36,7 @@ public class DefaultPDFTextExtractor implements PDFTextExtractor
     return result;
   }
 
-  public PDDocument createPdfInMemory(InputStream inputStreamPdf) throws IOException
+  PDDocument createPdfInMemory(InputStream inputStreamPdf) throws IOException
   {
     Validate.notNull(inputStreamPdf);
 

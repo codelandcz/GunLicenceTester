@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Exam
 {
-  private List<Question> questions = new ArrayList<>();
+  private final List<Question> questions = new ArrayList<>();
 
   public Exam addQuestion(Question question)
   {

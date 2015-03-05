@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class DefaultTextParser implements TextParser
 {
   private static final Logger LOGGER   = Logger.getLogger(DefaultTextParser.class.getName());
-  private static       String EOLregex = SystemProperty.EOL.replaceAll("\\\\", "\\");
+  private static final String EOLregex = SystemProperty.EOL.replaceAll("\\\\", "\\");
 
   @Override
   public List<Question> parseText(String text)
