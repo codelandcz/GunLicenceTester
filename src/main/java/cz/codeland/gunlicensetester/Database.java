@@ -1,6 +1,6 @@
 package cz.codeland.gunlicensetester;
 
-import org.hibernate.Session;
+import cz.codeland.gunlicensetester.util.DAO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,11 +14,9 @@ import java.util.logging.Logger;
 class Database
 {
   private static final Logger LOGGER = Logger.getLogger(DefaultPDFTextExtractor.class.getName());
-  private final Session session;
 
-  public Database(Session session)
+  public Database()
   {
-    this.session = session;
   }
 
   public void generateDatabase(InputStream inputStreamQuestions, InputStream inputStreamAnswers) throws IOException, SQLException, RuntimeException
@@ -66,7 +64,7 @@ class Database
   {
     for(Question question : questions) {
       LOGGER.info("Persisting question: " + question);
-      session.save(question);
+      DAO.getSession().save(question);
     }
   }
 
