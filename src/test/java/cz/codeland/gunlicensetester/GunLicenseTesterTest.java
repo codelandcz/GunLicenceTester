@@ -102,8 +102,6 @@ public class GunLicenseTesterTest
 
     // Then
     List actualQuestions = DAO.getSession().createQuery("from Question").list();
-    System.out.println("E size: " + expectedQuestions.size());
-    System.out.println("A size: " + actualQuestions.size());
     for(int i = 0; i < actualQuestions.size(); i++) {
       Question actualQuestion = (Question) actualQuestions.get(i);
       Question expectedQuestion = expectedQuestions.get(i);
