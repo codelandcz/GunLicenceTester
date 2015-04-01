@@ -1,11 +1,6 @@
 package cz.codeland.gunlicensetester;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+import cz.codeland.gunlicensetester.util.DAO;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,26 +15,19 @@ public class DatabaseTest
 {
   private static final Logger LOGGER = Logger.getLogger(DatabaseTest.class.getName());
   private Database       database;
-  private SessionFactory sessionFactory;
-  private Session        session;
 
   @Before
   public void setUp() throws Exception
   {
-    Configuration configuration = new Configuration().configure();
-    ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-      .applySettings(configuration.getProperties())
-      .build();
-
-    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-    session = sessionFactory.openSession();
-    database = new Database(session);
+    database = new Database();
+    DAO.beginTransaction();
   }
 
   @After
   public void tearDown() throws Exception
   {
-    session.close();
+    DAO.rollbackTransaction();
+    DAO.close();
   }
 
   @Test
@@ -79,16 +67,10 @@ public class DatabaseTest
     expectedQuestions.add(expectedQuestion3);
 
     // When
-    Transaction transaction = session.getTransaction();
-    transaction.begin();
     database.generateDatabase(inputStreamQuestions, inputStreamAnswers);
-    session.flush();
-    session.clear();
 
     List actualQuestions;
-    actualQuestions = session.createQuery("from Question").list();
-
-    transaction.rollback();
+    actualQuestions = DAO.getSession().createQuery("from Question").list();
 
     // Then
     Assert.assertEquals(expectedQuestions.size(), actualQuestions.size());
