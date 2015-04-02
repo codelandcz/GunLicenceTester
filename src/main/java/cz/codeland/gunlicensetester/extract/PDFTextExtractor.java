@@ -1,4 +1,4 @@
-package cz.codeland.gunlicensetester;
+package cz.codeland.gunlicensetester.extract;
 
 import java.io.IOException;
 import java.io.InputStream;

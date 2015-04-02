@@ -1,4 +1,4 @@
-package cz.codeland.gunlicensetester;
+package cz.codeland.gunlicensetester.util;
 
 public enum QuestionStyle
 {
@@ -7,5 +7,5 @@ public enum QuestionStyle
   // No question number, no marked correct answer, one question in one time
   TRAINING,
   // With question number, no marked correct answer, filtered questions in one time
-  TESTING
+  EXAM
 }

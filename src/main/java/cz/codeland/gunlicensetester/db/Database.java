@@ -1,6 +1,8 @@
-package cz.codeland.gunlicensetester;
+package cz.codeland.gunlicensetester.db;
 
-import cz.codeland.gunlicensetester.util.DAO;
+import cz.codeland.gunlicensetester.extract.DefaultPDFTextExtractor;
+import cz.codeland.gunlicensetester.extract.DefaultTextParser;
+import cz.codeland.gunlicensetester.model.Question;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class Database
+public class Database
 {
   private static final Logger LOGGER = Logger.getLogger(DefaultPDFTextExtractor.class.getName());
 

@@ -1,4 +1,4 @@
-package cz.codeland.gunlicensetester;
+package cz.codeland.gunlicensetester.extract;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.pdfbox.cos.COSDocument;

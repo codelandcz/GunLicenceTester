@@ -1,6 +1,9 @@
 package cz.codeland.gunlicensetester;
 
-import cz.codeland.gunlicensetester.util.DAO;
+import cz.codeland.gunlicensetester.db.Database;
+import cz.codeland.gunlicensetester.model.Answer;
+import cz.codeland.gunlicensetester.model.Question;
+import cz.codeland.gunlicensetester.db.DAO;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,7 +17,7 @@ import java.util.logging.Logger;
 public class DatabaseTest
 {
   private static final Logger LOGGER = Logger.getLogger(DatabaseTest.class.getName());
-  private Database       database;
+  private Database database;
 
   @Before
   public void setUp() throws Exception

@@ -1,5 +1,7 @@
 package cz.codeland.gunlicensetester;
 
+import cz.codeland.gunlicensetester.db.Database;
+
 import java.io.*;
 import java.sql.SQLException;
 import java.util.Properties;

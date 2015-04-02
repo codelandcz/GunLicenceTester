@@ -1,5 +1,7 @@
 package cz.codeland.gunlicensetester;
 
+import cz.codeland.gunlicensetester.extract.DefaultPDFTextExtractor;
+import cz.codeland.gunlicensetester.extract.PDFTextExtractor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

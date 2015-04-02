@@ -1,5 +1,6 @@
 package cz.codeland.gunlicensetester;
 
+import cz.codeland.gunlicensetester.model.Answer;
 import org.junit.Assert;
 import org.junit.Test;
 
