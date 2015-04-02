@@ -1,4 +1,4 @@
-package cz.codeland.gunlicensetester.util;
+package cz.codeland.gunlicensetester.db;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

@@ -1,5 +1,8 @@
 package cz.codeland.gunlicensetester;
 
+import cz.codeland.gunlicensetester.model.Answer;
+import cz.codeland.gunlicensetester.model.Question;
+import cz.codeland.gunlicensetester.util.QuestionStyle;
 import cz.codeland.gunlicensetester.util.QuestionsPrinter;
 import cz.codeland.gunlicensetester.util.SystemProperty;
 import org.junit.Assert;
@@ -24,7 +27,7 @@ public class ExamTest
     Exam exam = new Exam();
     exam.addQuestion(question);
     // When
-    String examText = QuestionsPrinter.questionToString(1, question, QuestionStyle.TESTING);
+    String examText = QuestionsPrinter.questionToString(1, question, QuestionStyle.EXAM);
     // Then
     String expected =
       "1. Pro účely zákona o zbraních se rozumí držením zbraně nebo střeliva mít" + SystemProperty.EOL +

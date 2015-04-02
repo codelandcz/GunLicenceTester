@@ -1,5 +1,7 @@
-package cz.codeland.gunlicensetester;
+package cz.codeland.gunlicensetester.extract;
 
+import cz.codeland.gunlicensetester.model.Answer;
+import cz.codeland.gunlicensetester.model.Question;
 import cz.codeland.gunlicensetester.util.SystemProperty;
 
 import java.util.ArrayList;

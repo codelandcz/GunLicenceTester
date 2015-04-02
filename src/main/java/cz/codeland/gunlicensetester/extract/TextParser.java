@@ -1,4 +1,6 @@
-package cz.codeland.gunlicensetester;
+package cz.codeland.gunlicensetester.extract;
+
+import cz.codeland.gunlicensetester.model.Question;
 
 import java.util.List;
 

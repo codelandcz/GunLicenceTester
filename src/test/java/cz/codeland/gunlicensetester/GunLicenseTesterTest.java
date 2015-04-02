@@ -1,6 +1,8 @@
 package cz.codeland.gunlicensetester;
 
-import cz.codeland.gunlicensetester.util.DAO;
+import cz.codeland.gunlicensetester.model.Answer;
+import cz.codeland.gunlicensetester.model.Question;
+import cz.codeland.gunlicensetester.db.DAO;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
